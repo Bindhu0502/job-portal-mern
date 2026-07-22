@@ -7,18 +7,50 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Dependencies
+node_modules/
+
+# Build
+dist/
+dist-ssr/
+
+# Environment files
+.env
+.env.*
+server/.env
+
+# Uploads
+server/uploads/
+uploads/
+
+# OS Files
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# Local settings
 *.local
 
-# Editor directories and files
+# VS Code
 .vscode/*
 !.vscode/extensions.json
+
+# IDE
 .idea
-.DS_Store
+
+# Misc
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+# Environment files
+.env
+.env.*
+server/.env
+
+# Uploads
+server/uploads/
+
+# Windows
+desktop.ini
