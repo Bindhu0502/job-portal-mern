@@ -1,56 +1,91 @@
+# ============================================
+# Dependencies
+# ============================================
+node_modules/
+**/node_modules/
+
+# ============================================
+# Build Outputs
+# ============================================
+dist/
+dist-ssr/
+build/
+coverage/
+
+# ============================================
+# Environment Files
+# ============================================
+.env
+.env.*
+!.env.example
+server/.env
+server/.env.*
+!server/.env.example
+
+# ============================================
+# Uploads & User Generated Files
+# ============================================
+server/uploads/
+uploads/
+
+# ============================================
 # Logs
-logs
+# ============================================
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-# Dependencies
-node_modules/
+# ============================================
+# Cache
+# ============================================
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
 
-# Build
-dist/
-dist-ssr/
-
-# Environment files
-.env
-.env.*
-server/.env
-
-# Uploads
-server/uploads/
-uploads/
-
+# ============================================
 # OS Files
-desktop.ini
+# ============================================
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Local settings
-*.local
-
-# VS Code
+# ============================================
+# Editor Settings
+# ============================================
 .vscode/*
 !.vscode/extensions.json
-
-# IDE
-.idea
-
-# Misc
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-# Environment files
-.env
-.env.*
-server/.env
 
-# Uploads
-server/uploads/
+# ============================================
+# Temporary Files
+# ============================================
+tmp/
+temp/
+*.tmp
+*.swp
 
-# Windows
-desktop.ini
+# ============================================
+# Runtime Files
+# ============================================
+*.pid
+*.seed
+*.pid.lock
+
+# ============================================
+# Optional Package Manager Files
+# ============================================
+.pnpm-store/
+.npm/
+
+# ============================================
+# Miscellaneous
+# ============================================
+*.local
