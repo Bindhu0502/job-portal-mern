@@ -1,0 +1,43 @@
+/* ==========================================================
+   NO JOBS
+========================================================== */
+
+.no-jobs{
+
+    grid-column:1/-1;
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+}
+
+.no-jobs h3{
+
+    color:var(--secondary);
+
+    margin-bottom:10px;
+}
+
+.no-jobs p{
+
+    color:var(--text-light);
+}
+
+/* ==========================================================
+   VIEW ALL
+========================================================== */
+
+.latest-view-all{
+
+    text-align:center;
+
+    margin-top:50px;
+}

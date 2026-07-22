@@ -1,0 +1,276 @@
+/* =========================
+   Profile Page
+========================= */
+
+.profile-page {
+  background: #f4f7fb;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.profile-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* =========================
+   Profile Header
+========================= */
+
+.profile-header {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+.profile-image-wrapper {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-image,
+.default-profile-icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.default-profile-icon {
+  color: #cbd5e1;
+}
+
+.camera-overlay {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-details h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.profile-details p {
+  color: gray;
+  margin: 8px 0;
+}
+
+.role-badge {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.upload-text {
+  color: #2563eb;
+  margin-top: 12px;
+}
+
+/* =========================
+   Profile Info
+========================= */
+
+.profile-info-card,
+.resume-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.08);
+}
+
+.profile-info-header h2,
+.resume-header h2 {
+  margin-bottom: 25px;
+}
+
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.profile-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.profile-full {
+  grid-column: span 2;
+}
+
+.profile-icon {
+  font-size: 22px;
+  color: #2563eb;
+  margin-top: 4px;
+}
+
+.profile-item label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.profile-item p {
+  color: #555;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.profile-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.edit-profile-btn,
+.change-password-btn,
+.upload-resume-btn,
+.view-resume-btn,
+.save-btn,
+.cancel-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-profile-btn,
+.upload-resume-btn,
+.save-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.change-password-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.view-resume-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.cancel-btn {
+  background: #e5e7eb;
+}
+
+/* =========================
+   Resume
+========================= */
+
+.resume-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.resume-icon {
+  font-size: 60px;
+  color: #dc2626;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* =========================
+   Modal
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 500px;
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+.modal textarea {
+  resize: vertical;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width:768px){
+
+.profile-header{
+flex-direction:column;
+text-align:center;
+}
+
+.profile-info-grid{
+grid-template-columns:1fr;
+}
+
+.profile-full{
+grid-column:span 1;
+}
+
+.profile-buttons,
+.resume-actions{
+flex-direction:column;
+}
+
+.modal{
+width:95%;
+}
+
+}

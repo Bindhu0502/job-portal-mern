@@ -1,0 +1,131 @@
+/* ===================================
+   SEARCH SECTION
+=================================== */
+
+.search-section {
+  width: 100%;
+  margin-top: -45px;
+  position: relative;
+  z-index: 100;
+  padding: 0 8%;
+}
+
+.search-container {
+  max-width: 1200px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
+  padding: 22px;
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 1.3fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+/* ===================================
+   SEARCH BOX
+=================================== */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0 18px;
+  height: 58px;
+  transition: all 0.3s ease;
+}
+
+.search-box:hover {
+  border-color: #2563eb;
+}
+
+.search-box:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+  color: #2563eb;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.search-box input,
+.search-box select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.search-box input::placeholder {
+  color: #94a3b8;
+}
+
+.search-box select {
+  cursor: pointer;
+}
+
+/* ===================================
+   BUTTON
+=================================== */
+
+.search-btn {
+  height: 58px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  padding: 0 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 1100px) {
+  .search-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-section {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+
+  .search-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}

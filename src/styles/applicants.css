@@ -1,0 +1,195 @@
+/* ==========================================
+   Applicants Page
+========================================== */
+
+.admin-applicants-page {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.page-header {
+  margin-bottom: 25px;
+}
+
+.page-header h2 {
+  font-size: 30px;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+.applicant-search {
+  margin-bottom: 25px;
+}
+
+.applicant-search input {
+  width: 100%;
+  max-width: 450px;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.applicant-search input:focus {
+  border-color: #2563eb;
+}
+
+/* ==========================================
+   Table
+========================================== */
+
+.applicants-table-container {
+  background: white;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.applicants-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.applicants-table thead {
+  background: #2563eb;
+  color: white;
+}
+
+.applicants-table th,
+.applicants-table td {
+  padding: 16px;
+  text-align: left;
+}
+
+.applicants-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: .3s;
+}
+
+.applicants-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ==========================================
+   Resume Button
+========================================== */
+
+.resume-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.resume-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================
+   Status Badge
+========================================== */
+
+.status {
+  padding: 7px 14px;
+  border-radius: 30px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.applied {
+  background: #2563eb;
+}
+
+.reviewed {
+  background: #f59e0b;
+}
+
+.shortlisted {
+  background: #7c3aed;
+}
+
+.rejected {
+  background: #ef4444;
+}
+
+.hired {
+  background: #16a34a;
+}
+
+/* ==========================================
+   Status Select
+========================================== */
+
+.status-select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+}
+
+/* ==========================================
+   Empty State
+========================================== */
+
+.no-applicants {
+  background: white;
+  padding: 60px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.no-applicants h3 {
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.no-applicants p {
+  color: #64748b;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 768px) {
+
+  .admin-applicants-page {
+    padding: 15px;
+  }
+
+  .page-header h2 {
+    font-size: 24px;
+  }
+
+  .applicants-table th,
+  .applicants-table td {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .resume-btn {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .status-select {
+    font-size: 13px;
+  }
+}

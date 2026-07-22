@@ -1,0 +1,55 @@
+.footer{
+
+margin-top:60px;
+
+background:#0f172a;
+
+color:white;
+
+padding:35px;
+
+text-align:center;
+
+}
+
+.footer h2{
+
+margin-bottom:15px;
+
+}
+
+.footer p{
+
+margin:8px 0;
+
+color:#cbd5e1;
+
+}
+
+.footer-links{
+
+margin-top:20px;
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.footer-links a{
+
+color:white;
+
+transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+color:#38bdf8;
+
+}

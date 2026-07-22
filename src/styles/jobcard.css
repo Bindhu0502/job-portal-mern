@@ -1,0 +1,205 @@
+/* ==========================================
+   JOB CARD
+========================================== */
+
+.job-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.job-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  border-color: #2563eb;
+}
+
+/* ==========================================
+   BOOKMARK
+========================================== */
+
+.bookmark-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bookmark-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+/* ==========================================
+   COMPANY
+========================================== */
+
+.job-company {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.job-logo {
+  width: 65px;
+  height: 65px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.job-company h4 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.verified {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: #10b981;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   TITLE
+========================================== */
+
+.job-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   DETAILS
+========================================== */
+
+.job-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.job-details div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.job-details svg {
+  color: #2563eb;
+}
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.job-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tag.blue {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.tag.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.job-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.posted {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.details-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.details-btn:hover {
+  gap: 12px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+  .job-card {
+    padding: 20px;
+  }
+
+  .job-title {
+    font-size: 20px;
+  }
+
+  .job-details {
+    grid-template-columns: 1fr;
+  }
+
+  .job-footer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}

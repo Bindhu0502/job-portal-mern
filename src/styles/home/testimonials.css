@@ -1,0 +1,152 @@
+/* ==========================================================
+   TESTIMONIALS
+========================================================== */
+
+.testimonials{
+
+    background:#fff;
+}
+
+.testimonial-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+}
+
+.testimonial-header h2{
+
+    font-size:40px;
+
+    color:var(--secondary);
+
+    margin-bottom:15px;
+}
+
+.testimonial-header p{
+
+    color:var(--text-light);
+
+    max-width:700px;
+
+    margin:auto;
+
+    font-size:18px;
+}
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.testimonial-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.testimonial-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 20px 45px rgba(15,23,42,.12);
+}
+
+.testimonial-rating{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+}
+
+.testimonial-review{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+    min-height:120px;
+}
+
+/* ==========================================================
+   USER
+========================================================== */
+
+.testimonial-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.testimonial-user img{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+.testimonial-user h4{
+
+    color:var(--secondary);
+
+    margin-bottom:4px;
+}
+
+.testimonial-user span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:768px){
+
+.testimonial-header h2{
+
+font-size:32px;
+}
+
+.testimonial-review{
+
+min-height:auto;
+}
+
+}
