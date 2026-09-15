@@ -1,32 +1,44 @@
-const express = require("express");
+import express from "express";
+
+import {
+  createApplication,
+  getMyApplications,
+  getApplicationById,
+  updateApplicationStatus,
+} from "../controllers/applicationController.js";
+
+import { protect } from "../middleware/authMiddleware.js";
+
+import { resumeUpload } from "../middleware/uploadMiddleware.js";
+
+
 const router = express.Router();
 
-const {
-  applyJob,
-  getMyApplications,
-  getApplicantsForJob,
-  updateApplicationStatus,
-  withdrawApplication,
-} = require("../controllers/applicationController");
 
-const { protect, admin } = require("../middleware/authMiddleware");
-
-const { uploadResume } = require("../middleware/upload");
-
-/* ==========================================
-   Apply for Job
-========================================== */
+// ============================================================
+// CREATE APPLICATION
+// POST /api/applications
+// ============================================================
+//
+// Resume field:
+// resume
+//
+// Accepted:
+// PDF / DOC / DOCX
+//
 
 router.post(
-  "/apply/:jobId",
+  "/",
   protect,
-  uploadResume.single("resume"),
-  applyJob
+  resumeUpload.single("resume"),
+  createApplication
 );
 
-/* ==========================================
-   Logged In User Applications
-========================================== */
+
+// ============================================================
+// GET USER APPLICATIONS
+// GET /api/applications/my
+// ============================================================
 
 router.get(
   "/my",
@@ -34,36 +46,29 @@ router.get(
   getMyApplications
 );
 
-/* ==========================================
-   Admin - View Applicants
-========================================== */
+
+// ============================================================
+// GET SINGLE APPLICATION
+// GET /api/applications/:id
+// ============================================================
 
 router.get(
-  "/job/:jobId",
+  "/:id",
   protect,
-  admin,
-  getApplicantsForJob
+  getApplicationById
 );
 
-/* ==========================================
-   Admin - Update Status
-========================================== */
+
+// ============================================================
+// UPDATE APPLICATION STATUS
+// PUT /api/applications/:id/status
+// ============================================================
 
 router.put(
   "/:id/status",
   protect,
-  admin,
   updateApplicationStatus
 );
 
-/* ==========================================
-   Withdraw Application
-========================================== */
 
-router.delete(
-  "/:id",
-  protect,
-  withdrawApplication
-);
-
-module.exports = router;
+export default router;

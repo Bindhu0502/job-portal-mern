@@ -1,0 +1,60 @@
+/* ============================
+   JOB LIST GRID
+============================ */
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 30px;
+  align-items: stretch;
+}
+
+/* ============================
+   EMPTY STATE
+============================ */
+
+.no-jobs {
+  text-align: center;
+  padding: 80px 20px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.06);
+}
+
+.no-jobs h2 {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.no-jobs p {
+  color: #6b7280;
+}
+
+/* ============================
+   LARGE TABLETS
+============================ */
+
+@media (max-width:1200px){
+
+.job-list{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/* ============================
+   MOBILE
+============================ */
+
+@media (max-width:768px){
+
+.job-list{
+
+grid-template-columns:1fr;
+
+}
+
+}

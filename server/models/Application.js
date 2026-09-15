@@ -1,41 +1,157 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
 
 const applicationSchema = new mongoose.Schema(
-  {
-    job: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Job",
-      required: true,
-    },
 
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+{
 
-    resume: {
-      type: String,
-      default: "",
-    },
+user:{
 
-    coverLetter: {
-      type: String,
-      default: "",
-    },
+type:mongoose.Schema.Types.ObjectId,
 
-    status: {
-      type: String,
-      enum: ["Pending", "Reviewed", "Accepted", "Rejected"],
-      default: "Pending",
-    },
-  },
-  {
-    timestamps: true,
-  }
+ref:"User",
+
+required:true
+
+},
+
+
+
+job:{
+
+type:mongoose.Schema.Types.ObjectId,
+
+ref:"Job",
+
+required:true
+
+},
+
+
+
+
+fullName:{
+
+type:String,
+
+required:true
+
+},
+
+
+
+email:{
+
+type:String,
+
+required:true
+
+},
+
+
+
+phone:{
+
+type:String,
+
+default:""
+
+},
+
+
+
+
+experience:{
+
+type:String,
+
+default:"Fresher"
+
+},
+
+
+
+
+skills:{
+
+type:String,
+
+default:""
+
+},
+
+
+
+
+
+coverLetter:{
+
+type:String,
+
+default:""
+
+},
+
+
+
+
+
+resume:{
+
+type:String,
+
+required:true
+
+},
+
+
+
+
+
+status:{
+
+type:String,
+
+enum:[
+
+"Applied",
+
+"Reviewed",
+
+"Shortlisted",
+
+"Selected",
+
+"Rejected"
+
+],
+
+default:"Applied"
+
+}
+
+
+
+},
+
+{
+
+timestamps:true
+
+}
+
+
+
 );
 
-// Prevent duplicate applications
-applicationSchema.index({ job: 1, user: 1 }, { unique: true });
 
-module.exports = mongoose.model("Application", applicationSchema);
+
+
+
+export default mongoose.model(
+
+"Application",
+
+applicationSchema
+
+);

@@ -1,47 +1,151 @@
-const multer = require("multer");
-const fs = require("fs");
+import multer from "multer";
 
-const uploadPath = "uploads/resumes";
+// ============================================================
+// MEMORY STORAGE
+// ============================================================
+//
+// Files stay in memory as req.file.buffer.
+// Controllers will decide where to save them.
+//
 
-if (!fs.existsSync(uploadPath)) {
-  fs.mkdirSync(uploadPath, { recursive: true });
-}
+const storage = multer.memoryStorage();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadPath);
-  },
 
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      Date.now() +
-        "-" +
-        file.originalname.replace(/\s+/g, "_")
-    );
-  },
-});
+// ============================================================
+// PROFILE IMAGE FILTER
+// ============================================================
 
-const fileFilter = (req, file, cb) => {
-  const allowed = [
-    "application/pdf",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+const imageFileFilter = (req, file, cb) => {
+  const allowedTypes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/webp",
   ];
 
-  if (allowed.includes(file.mimetype)) {
+  if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("Only PDF, DOC and DOCX files are allowed."));
+    cb(
+      new Error(
+        "Invalid file type. Only JPG, PNG and WEBP images are allowed."
+      ),
+      false
+    );
   }
 };
 
-const upload = multer({
+
+// ============================================================
+// RESUME FILE FILTER
+// ============================================================
+
+const resumeFileFilter = (req, file, cb) => {
+  const allowedTypes = [
+    // PDF
+    "application/pdf",
+
+    // Microsoft Word
+    "application/msword",
+
+    // Microsoft Word DOCX
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+
+    // Some browsers/systems may send these
+    "application/octet-stream",
+  ];
+
+  const allowedExtensions = [
+    ".pdf",
+    ".doc",
+    ".docx",
+  ];
+
+  const fileExtension = file.originalname
+    ? file.originalname
+        .substring(file.originalname.lastIndexOf("."))
+        .toLowerCase()
+    : "";
+
+  // Check MIME OR extension
+  if (
+    allowedTypes.includes(file.mimetype) ||
+    allowedExtensions.includes(fileExtension)
+  ) {
+    cb(null, true);
+  } else {
+    cb(
+      new Error(
+        "Invalid resume file type. Only PDF, DOC and DOCX files are allowed."
+      ),
+      false
+    );
+  }
+};
+
+
+// ============================================================
+// PROFILE IMAGE UPLOAD
+// ============================================================
+//
+// Used by:
+// PUT /api/users/profile
+//
+// Field:
+// profileImage
+//
+
+const imageUpload = multer({
   storage,
-  fileFilter,
+
+  fileFilter: imageFileFilter,
+
   limits: {
     fileSize: 5 * 1024 * 1024,
   },
 });
 
-module.exports = upload;
+
+// ============================================================
+// RESUME UPLOAD
+// ============================================================
+//
+// Used by:
+// POST /api/applications
+// PUT /api/users/resume
+//
+// Field:
+// resume
+//
+
+const resumeUpload = multer({
+  storage,
+
+  fileFilter: resumeFileFilter,
+
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
+
+
+// ============================================================
+// EXPORT
+// ============================================================
+
+export {
+  imageUpload,
+  resumeUpload,
+};
+
+
+// Default export
+// Keep this so existing imports don't break.
+//
+// Existing userRoutes.js uses:
+// import upload from "../middleware/uploadMiddleware.js";
+//
+// Therefore default = imageUpload.
+//
+
+export default imageUpload;

@@ -1,0 +1,53 @@
+:root {
+  /* ========= Brand ========= */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-border: #bfdbfe;
+
+  /* ========= Success ========= */
+  --success: #16a34a;
+  --success-light: #f0fdf4;
+  --success-border: #bbf7d0;
+
+  /* ========= Danger ========= */
+  --danger: #dc2626;
+  --danger-light: #fef2f2;
+  --danger-border: #fecaca;
+
+  /* ========= Warning ========= */
+  --warning: #d97706;
+  --warning-light: #fffbeb;
+  --warning-border: #fde68a;
+
+  /* ========= Text ========= */
+  --heading: #111827;
+  --text: #1f2937;
+  --text-light: #4b5563;
+  --text-muted: #6b7280;
+
+  /* ========= Background ========= */
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-light: #f9fafb;
+
+  /* ========= Border ========= */
+  --border: #e5e7eb;
+  --border-light: #f1f5f9;
+
+  /* ========= Shadow ========= */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+
+  --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.12);
+
+  /* ========= Radius ========= */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* ========= Animation ========= */
+  --transition: all 0.3s ease;
+}

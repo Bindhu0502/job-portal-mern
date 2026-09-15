@@ -1,72 +1,73 @@
-const express = require("express");
+import express from "express";
+
+import {
+  getProfile,
+  updateProfile,
+  uploadResume,
+  deleteResume,
+  getProfileCompletion,
+} from "../controllers/userController.js";
+
+import { protect } from "../middleware/authMiddleware.js";
+import upload from "../middleware/uploadMiddleware.js";
+
 const router = express.Router();
 
-const {
-  registerUser,
-  loginUser,
-  getAllUsers,
-  getMyProfile,
-  updateMyProfile,
-  changePassword,
-  uploadProfilePicture,
-  uploadResume,
-} = require("../controllers/userController");
+// ============================================================
+// GET PROFILE
+// GET /api/users/profile
+// ============================================================
 
-const { protect, admin } = require("../middleware/authMiddleware");
-
-const {
-  uploadProfilePicture: uploadProfile,
-  uploadResume: uploadResumeFile,
-} = require("../middleware/upload");
-
-// =====================================
-// Authentication
-// =====================================
-
-// Register
-router.post("/register", registerUser);
-
-// Login
-router.post("/login", loginUser);
-
-// =====================================
-// Profile
-// =====================================
-
-// Get Logged-in User Profile
-router.get("/profile", protect, getMyProfile);
-
-// Update Profile
-router.put("/profile", protect, updateMyProfile);
-
-// Change Password
-router.put("/change-password", protect, changePassword);
-
-// =====================================
-// Uploads
-// =====================================
-
-// Upload Profile Picture
-router.post(
-  "/upload/profile-picture",
+router.get(
+  "/profile",
   protect,
-  uploadProfile.single("profilePicture"),
-  uploadProfilePicture
+  getProfile
 );
 
-// Upload Resume
-router.post(
-  "/upload/resume",
+// ============================================================
+// UPDATE PROFILE + PROFILE IMAGE
+// PUT /api/users/profile
+// ============================================================
+
+router.put(
+  "/profile",
   protect,
-  uploadResumeFile.single("resume"),
+  upload.single("profileImage"),
+  updateProfile
+);
+
+// ============================================================
+// UPLOAD RESUME
+// PUT /api/users/resume
+// ============================================================
+
+router.put(
+  "/resume",
+  protect,
+  upload.single("resume"),
   uploadResume
 );
 
-// =====================================
-// Admin
-// =====================================
+// ============================================================
+// DELETE RESUME
+// DELETE /api/users/resume
+// ============================================================
 
-// Get All Users
-router.get("/", protect, admin, getAllUsers);
+router.delete(
+  "/resume",
+  protect,
+  deleteResume
+);
 
-module.exports = router;
+// ============================================================
+// PROFILE COMPLETION
+// GET /api/users/profile-completion
+// ============================================================
+
+router.get(
+  "/profile-completion",
+  protect,
+  getProfileCompletion
+);
+
+export default router;

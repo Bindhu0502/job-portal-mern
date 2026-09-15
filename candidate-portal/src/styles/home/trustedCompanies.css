@@ -1,0 +1,192 @@
+/* ===========================
+   TRUSTED COMPANIES
+=========================== */
+
+.trusted-section {
+  padding: 90px 8%;
+  background: #f8fbff;
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-title span {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  background: #eaf2ff;
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-size: 42px;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.section-title p {
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.companies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.company-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+
+  transition: .3s;
+
+  overflow: hidden;
+}
+
+.company-card:hover {
+  transform: translateY(-8px);
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.company-logo {
+  width: 75px;
+  height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+
+  border-radius: 15px;
+
+  border: 1px solid #eee;
+
+  flex-shrink: 0;
+}
+
+.company-logo img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.company-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.company-content h3 {
+  font-size: 23px;
+  margin-bottom: 8px;
+
+  color: #111827;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.jobs {
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.location {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.company-btn {
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  cursor: pointer;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.company-btn:hover {
+  background: #1d4ed8;
+  color: white;
+}
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:650px){
+
+  .company-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+  }
+
+  .company-content{
+
+    width:100%;
+
+  }
+
+  .company-btn{
+
+    width:100%;
+
+    margin-top:15px;
+
+  }
+
+  .section-title h2{
+
+    font-size:34px;
+
+  }
+
+}

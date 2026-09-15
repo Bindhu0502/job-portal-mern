@@ -1,196 +1,917 @@
-const Job = require("../models/Job");
+import Job from "../models/Job.js";
 
-// ==========================
-// Add New Job
-// ==========================
-const addJob = async (req, res) => {
-  try {
-    const {
-      title,
-      company,
-      location,
-      salary,
-      experience,
-      type,
-      description,
-      skills,
-      category,
-      companyLogo,
-    } = req.body;
 
-    if (
-      !title ||
-      !company ||
-      !location ||
-      !salary ||
-      !experience ||
-      !type ||
-      !description ||
-      !skills
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "Please fill all required fields",
-      });
-    }
 
-    const newJob = await Job.create({
-      title,
-      company,
-      location,
-      salary,
-      experience,
-      type,
-      description,
-      skills,
-      category,
-      companyLogo,
-    });
 
-    res.status(201).json({
-      success: true,
-      message: "Job Added Successfully",
-      job: newJob,
-    });
+// =========================================
+// CREATE JOB
+// POST /api/jobs
+// =========================================
 
-  } catch (error) {
-    console.log(error);
+export const createJob = async(req,res)=>{
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+
+try{
+
+
+const {
+
+title,
+company,
+location,
+salary,
+jobType,
+workMode,
+experience,
+description,
+skills,
+category,
+companyLogo,
+openings,
+deadline
+
+
+}=req.body;
+
+
+
+
+
+if(
+!title ||
+!company ||
+!location ||
+!description
+){
+
+
+return res.status(400).json({
+
+success:false,
+
+message:
+"Title, company, location and description are required"
+
+});
+
+
+}
+
+
+
+
+
+
+
+const job = await Job.create({
+
+
+title,
+
+company,
+
+location,
+
+salary,
+
+jobType,
+
+workMode,
+
+experience,
+
+description,
+
+skills,
+
+category,
+
+companyLogo,
+
+openings,
+
+deadline,
+
+
+postedBy:req.user._id,
+
+
+isActive:true
+
+
+});
+
+
+
+
+
+
+
+res.status(201).json({
+
+success:true,
+
+message:"Job created successfully",
+
+job
+
+});
+
+
+}
+
+
+
+catch(error){
+
+
+console.log(
+"CREATE JOB ERROR:",
+error
+);
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
 };
 
-// ==========================
-// Get All Jobs
-// ==========================
-const getAllJobs = async (req, res) => {
-  try {
-    const jobs = await Job.find().sort({
-      createdAt: -1,
-    });
 
-    res.status(200).json({
-      success: true,
-      count: jobs.length,
-      jobs,
-    });
 
-  } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
 
-  }
+
+
+
+
+// =========================================
+// GET ALL ACTIVE JOBS
+// SEARCH + FILTER + PAGINATION
+// GET /api/jobs
+// =========================================
+
+
+export const getAllJobs = async(req,res)=>{
+
+
+try{
+
+
+const {
+
+
+search,
+
+location,
+
+jobType,
+
+experience,
+
+workMode,
+
+category,
+
+sort,
+
+page=1,
+
+limit=6
+
+
+}=req.query;
+
+
+
+
+
+
+
+let query={
+
+isActive:true
+
 };
 
-// ==========================
-// Get Single Job
-// ==========================
-const getJobById = async (req, res) => {
-  try {
 
-    const job = await Job.findById(req.params.id);
 
-    if (!job) {
-      return res.status(404).json({
-        success: false,
-        message: "Job not found",
-      });
-    }
 
-    res.status(200).json({
-      success: true,
-      job,
-    });
 
-  } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
 
-  }
+
+// ===============================
+// SEARCH
+// ===============================
+
+
+if(search && search.trim()){
+
+
+query.$or=[
+
+
+{
+title:{
+$regex:search,
+$options:"i"
+}
+},
+
+
+{
+company:{
+$regex:search,
+$options:"i"
+}
+},
+
+
+{
+skills:{
+$regex:search,
+$options:"i"
+}
+},
+
+
+{
+location:{
+$regex:search,
+$options:"i"
+}
+},
+
+
+{
+category:{
+$regex:search,
+$options:"i"
+}
+
+}
+
+
+];
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// FILTERS
+// ===============================
+
+
+if(location){
+
+
+query.location={
+
+$regex:location,
+
+$options:"i"
+
 };
 
-// ==========================
-// Update Job
-// ==========================
-const updateJob = async (req, res) => {
-  try {
 
-    const updatedJob = await Job.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+}
 
-    if (!updatedJob) {
-      return res.status(404).json({
-        success: false,
-        message: "Job not found",
-      });
-    }
 
-    res.status(200).json({
-      success: true,
-      message: "Job Updated Successfully",
-      job: updatedJob,
-    });
 
-  } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
 
-  }
+if(jobType){
+
+
+query.jobType=jobType;
+
+
+}
+
+
+
+
+
+if(experience){
+
+
+query.experience=experience;
+
+
+}
+
+
+
+
+
+if(workMode){
+
+
+query.workMode=workMode;
+
+
+}
+
+
+
+
+
+if(category){
+
+
+query.category={
+
+$regex:category,
+
+$options:"i"
+
 };
 
-// ==========================
-// Delete Job
-// ==========================
-const deleteJob = async (req, res) => {
-  try {
 
-    const job = await Job.findById(req.params.id);
+}
 
-    if (!job) {
-      return res.status(404).json({
-        success: false,
-        message: "Job not found",
-      });
-    }
 
-    await Job.findByIdAndDelete(req.params.id);
 
-    res.status(200).json({
-      success: true,
-      message: "Job Deleted Successfully",
-    });
 
-  } catch (error) {
 
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
 
-  }
+
+
+
+// ===============================
+// SORT
+// ===============================
+
+
+let sortOption={
+
+createdAt:-1
+
 };
 
-module.exports = {
-  addJob,
-  getAllJobs,
-  getJobById,
-  updateJob,
-  deleteJob,
+
+
+if(sort==="oldest"){
+
+
+sortOption={
+
+createdAt:1
+
+};
+
+
+}
+
+
+
+if(sort==="latest"){
+
+
+sortOption={
+
+createdAt:-1
+
+};
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// PAGINATION
+// ===============================
+
+
+const pageNumber=Number(page);
+
+const limitNumber=Number(limit);
+
+
+const skip=
+
+(pageNumber-1)*limitNumber;
+
+
+
+
+
+const totalJobs=
+
+await Job.countDocuments(query);
+
+
+
+
+
+
+
+const jobs=
+
+await Job.find(query)
+
+.populate(
+
+"postedBy",
+
+"name email"
+
+)
+
+.sort(sortOption)
+
+.skip(skip)
+
+.limit(limitNumber);
+
+
+
+
+
+
+
+
+
+res.status(200).json({
+
+
+success:true,
+
+
+count:jobs.length,
+
+
+totalJobs,
+
+
+currentPage:pageNumber,
+
+
+totalPages:
+
+Math.ceil(
+
+totalJobs / limitNumber
+
+),
+
+
+jobs
+
+
+
+});
+
+
+
+
+
+}
+
+
+
+catch(error){
+
+
+
+console.log(
+
+"GET ALL JOBS ERROR:",
+
+error
+
+);
+
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+
+}
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// =========================================
+// GET JOB BY ID
+// GET /api/jobs/:id
+// =========================================
+
+
+export const getJobById = async(req,res)=>{
+
+
+try{
+
+
+const job = await Job.findOne({
+
+
+_id:req.params.id,
+
+isActive:true
+
+
+})
+
+.populate(
+
+"postedBy",
+
+"name email"
+
+);
+
+
+
+
+
+
+if(!job){
+
+
+return res.status(404).json({
+
+success:false,
+
+message:"Job not found"
+
+});
+
+
+}
+
+
+
+
+
+
+res.status(200).json({
+
+success:true,
+
+job
+
+});
+
+
+
+}
+
+
+
+catch(error){
+
+
+
+console.log(
+
+"GET JOB ERROR:",
+
+error
+
+);
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// =========================================
+// UPDATE JOB
+// PUT /api/jobs/:id
+// =========================================
+
+
+export const updateJob = async(req,res)=>{
+
+
+try{
+
+
+const job = await Job.findById(
+
+req.params.id
+
+);
+
+
+
+
+
+
+if(!job){
+
+
+return res.status(404).json({
+
+success:false,
+
+message:"Job not found"
+
+});
+
+
+}
+
+
+
+
+
+
+
+if(
+
+job.postedBy.toString()
+
+!==
+
+req.user._id.toString()
+
+){
+
+
+return res.status(403).json({
+
+success:false,
+
+message:"Not authorized"
+
+});
+
+
+}
+
+
+
+
+
+
+
+Object.assign(
+
+job,
+
+req.body
+
+);
+
+
+
+const updatedJob=
+
+await job.save();
+
+
+
+
+
+
+
+res.status(200).json({
+
+success:true,
+
+message:"Job updated successfully",
+
+job:updatedJob
+
+});
+
+
+
+}
+
+
+
+catch(error){
+
+
+
+console.log(
+
+"UPDATE JOB ERROR:",
+
+error
+
+);
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// =========================================
+// DELETE JOB
+// DELETE /api/jobs/:id
+// =========================================
+
+
+export const deleteJob = async(req,res)=>{
+
+
+try{
+
+
+const job=
+
+await Job.findById(
+
+req.params.id
+
+);
+
+
+
+
+
+
+if(!job){
+
+
+return res.status(404).json({
+
+success:false,
+
+message:"Job not found"
+
+});
+
+
+}
+
+
+
+
+
+
+
+if(
+
+job.postedBy.toString()
+
+!==
+
+req.user._id.toString()
+
+){
+
+
+return res.status(403).json({
+
+success:false,
+
+message:"Not authorized"
+
+});
+
+
+}
+
+
+
+
+
+
+
+await job.deleteOne();
+
+
+
+
+
+
+
+res.status(200).json({
+
+success:true,
+
+message:"Job deleted successfully"
+
+});
+
+
+
+}
+
+
+
+catch(error){
+
+
+
+console.log(
+
+"DELETE JOB ERROR:",
+
+error
+
+);
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
+
 };

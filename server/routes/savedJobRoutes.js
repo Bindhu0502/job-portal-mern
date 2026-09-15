@@ -1,20 +1,59 @@
-const express = require("express");
+import express from "express";
 
-const router = express.Router();
+import {
 
-const {
-  saveJob,
-  getSavedJobs,
-  removeSavedJob,
-} = require("../controllers/savedJobController");
+saveJob,
 
-// Save Job
-router.post("/", saveJob);
+removeSavedJob,
 
-// Get Saved Jobs of User
-router.get("/:userId", getSavedJobs);
+getSavedJobs
 
-// Remove Saved Job
-router.delete("/:id", removeSavedJob);
+} from "../controllers/savedJobController.js";
 
-module.exports = router;
+
+import {protect} from "../middleware/authMiddleware.js";
+
+
+
+const router=express.Router();
+
+
+
+
+router.get(
+
+"/my",
+
+protect,
+
+getSavedJobs
+
+);
+
+
+
+router.post(
+
+"/:jobId",
+
+protect,
+
+saveJob
+
+);
+
+
+
+router.delete(
+
+"/:jobId",
+
+protect,
+
+removeSavedJob
+
+);
+
+
+
+export default router;

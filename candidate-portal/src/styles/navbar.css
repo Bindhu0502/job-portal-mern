@@ -1,0 +1,185 @@
+/* ==========================================================
+   NAVBAR
+========================================================== */
+
+.custom-navbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 0;
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+}
+
+.brand-icon {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1;
+}
+
+.brand-text small {
+  color: var(--text-light);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ==========================================================
+   NAV LINKS
+========================================================== */
+
+.navbar-nav .nav-link {
+  color: var(--heading) !important;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: var(--transition);
+  border-radius: 8px;
+  padding: 8px 12px !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--primary) !important;
+  background: var(--primary-light);
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--primary) !important;
+  background: var(--primary-light);
+  font-weight: 600;
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.custom-navbar .btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 8px 18px;
+}
+
+.custom-navbar .btn-primary {
+  background: var(--primary);
+  border: none;
+}
+
+.custom-navbar .btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.custom-navbar .btn-outline-primary {
+  background: white;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.custom-navbar .btn-outline-primary:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* ==========================================================
+   USER DROPDOWN
+========================================================== */
+
+.user-dropdown-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--heading);
+  font-weight: 600;
+}
+
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-light);
+}
+
+.dropdown-menu {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 8px;
+}
+
+.dropdown-item {
+  color: var(--heading);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: var(--transition);
+}
+
+.dropdown-item:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.dropdown-divider {
+  border-color: var(--border);
+}
+
+/* ==========================================================
+   TOGGLER
+========================================================== */
+
+.navbar-toggler {
+  border: none;
+  box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 991px) {
+
+  .navbar-nav {
+    margin-top: 15px;
+    gap: 8px;
+  }
+
+  .navbar-nav .nav-link {
+    margin: 0;
+  }
+
+  .custom-navbar .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .user-dropdown-title {
+    justify-content: center;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+  }
+}

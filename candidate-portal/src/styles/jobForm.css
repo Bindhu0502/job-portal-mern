@@ -1,0 +1,199 @@
+/* ==========================================================
+   JOB FORM PAGE
+========================================================== */
+
+.job-form-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================
+   FORM CARD
+========================================================== */
+
+.job-form-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.job-form-header {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.job-form-header h1 {
+  color: #111827;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.job-form-header p {
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================
+   FORM GROUP
+========================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+/* ==========================================================
+   INPUTS
+========================================================== */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.job-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 35px;
+}
+
+.cancel-button,
+.save-button {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.cancel-button {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.cancel-button:hover {
+  background: #e5e7eb;
+}
+
+.save-button {
+  background: #2563eb;
+  color: white;
+}
+
+.save-button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37,99,235,.25);
+}
+
+.save-button:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+.form-group select {
+  cursor: pointer;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 992px) {
+
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .job-form-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .job-form-page {
+    padding: 20px 15px;
+  }
+
+  .job-form-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .job-form-buttons {
+    flex-direction: column;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+  }
+}

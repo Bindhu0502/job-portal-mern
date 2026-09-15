@@ -1,104 +1,350 @@
-const SavedJob = require("../models/SavedJob");
+import SavedJob from "../models/SavedJob.js";
+import Job from "../models/Job.js";
 
-// ============================
-// Save Job
-// ============================
 
-const saveJob = async (req, res) => {
-  try {
-    const { userId, jobId } = req.body;
 
-    console.log("Request Body:", req.body);
 
-    if (!userId || !jobId) {
-      return res.status(400).json({
-        success: false,
-        message: "User ID and Job ID are required",
-      });
-    }
 
-    const alreadySaved = await SavedJob.findOne({
-      userId,
-      jobId,
-    });
+// =====================================
+// SAVE JOB
+// POST /api/saved-jobs/:jobId
+// =====================================
 
-    if (alreadySaved) {
-      return res.status(200).json({
-        success: true,
-        message: "Job already saved",
-        savedJob: alreadySaved,
-      });
-    }
+export const saveJob = async(req,res)=>{
 
-    const savedJob = await SavedJob.create({
-      userId,
-      jobId,
-    });
 
-    return res.status(201).json({
-      success: true,
-      message: "Job saved successfully",
-      savedJob,
-    });
-  } catch (error) {
-    console.error("Save Job Error:", error);
+try{
 
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+
+const userId=req.user._id;
+
+
+const jobId=req.params.jobId;
+
+
+
+
+
+console.log("SAVE JOB USER:",userId);
+
+console.log("SAVE JOB ID:",jobId);
+
+
+
+
+
+
+
+if(!jobId){
+
+
+return res.status(400).json({
+
+success:false,
+
+message:"Job id required"
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+const job=await Job.findById(jobId);
+
+
+
+
+
+if(!job){
+
+
+return res.status(404).json({
+
+success:false,
+
+message:"Job not found"
+
+});
+
+
+}
+
+
+
+
+
+
+
+const alreadySaved = await SavedJob.findOne({
+
+user:userId,
+
+job:jobId
+
+});
+
+
+
+
+
+
+if(alreadySaved){
+
+
+return res.status(400).json({
+
+success:false,
+
+message:"Job already saved"
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+const savedJob=await SavedJob.create({
+
+user:userId,
+
+job:jobId
+
+});
+
+
+
+
+
+
+
+
+res.status(201).json({
+
+success:true,
+
+message:"Job saved successfully",
+
+savedJob
+
+});
+
+
+
+
+}
+
+catch(error){
+
+
+
+console.log(
+
+"SAVE JOB ERROR:",
+
+error
+
+);
+
+
+
+
+
+if(error.code===11000){
+
+
+return res.status(400).json({
+
+success:false,
+
+message:"Job already saved"
+
+});
+
+
+}
+
+
+
+
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
+
 };
 
-// ============================
-// Get Saved Jobs
-// ============================
 
-const getSavedJobs = async (req, res) => {
-  try {
-    const jobs = await SavedJob.find({
-      userId: req.params.userId,
-    }).populate("jobId");
 
-    return res.status(200).json({
-      success: true,
-      count: jobs.length,
-      jobs,
-    });
-  } catch (error) {
-    console.error(error);
 
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+
+
+
+
+
+// =====================================
+// REMOVE SAVED JOB
+// DELETE /api/saved-jobs/:jobId
+// =====================================
+
+
+export const removeSavedJob=async(req,res)=>{
+
+
+try{
+
+
+const deleted=await SavedJob.findOneAndDelete({
+
+
+user:req.user._id,
+
+job:req.params.jobId
+
+
+});
+
+
+
+
+
+
+if(!deleted){
+
+
+return res.status(404).json({
+
+success:false,
+
+message:"Saved job not found"
+
+});
+
+
+}
+
+
+
+
+
+
+res.json({
+
+success:true,
+
+message:"Removed from saved jobs"
+
+});
+
+
+
+}
+
+catch(error){
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
 };
 
-// ============================
-// Remove Saved Job
-// ============================
 
-const removeSavedJob = async (req, res) => {
-  try {
-    await SavedJob.findByIdAndDelete(req.params.id);
 
-    return res.status(200).json({
-      success: true,
-      message: "Saved job removed successfully",
-    });
-  } catch (error) {
-    console.error(error);
 
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
 
-module.exports = {
-  saveJob,
-  getSavedJobs,
-  removeSavedJob,
+
+
+
+
+// =====================================
+// GET MY SAVED JOBS
+// GET /api/saved-jobs/my
+// =====================================
+
+
+export const getSavedJobs=async(req,res)=>{
+
+
+try{
+
+
+const savedJobs=await SavedJob.find({
+
+user:req.user._id
+
+})
+
+.populate("job")
+
+.sort({
+
+createdAt:-1
+
+});
+
+
+
+
+
+
+
+res.json({
+
+success:true,
+
+savedJobs
+
+});
+
+
+
+}
+
+catch(error){
+
+
+res.status(500).json({
+
+success:false,
+
+message:error.message
+
+});
+
+
+}
+
+
 };

@@ -1,0 +1,71 @@
+.quick-actions-container {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  margin-top: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.quick-actions-container h2 {
+  margin-bottom: 25px;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+  gap: 20px;
+}
+
+.quick-action-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #111827;
+  background: #f9fafb;
+  transition: .3s;
+}
+
+.quick-action-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  background: #eef4ff;
+}
+
+.quick-action-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+}
+
+.quick-action-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.quick-action-content p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+@media(max-width:768px){
+
+.quick-action-card{
+padding:15px;
+}
+
+.quick-action-icon{
+width:55px;
+height:55px;
+font-size:22px;
+}
+
+}
